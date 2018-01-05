@@ -1,0 +1,52 @@
+html,
+body {
+  box-sizing: border-box;
+  background-color: #ffeead;
+  height: 100%;
+  padding: 10px;
+  margin: 0px;
+}
+
+.container > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  height: 100%;
+  display: grid;
+  grid-gap: 3px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    "m r p s"
+    "m ps . cs"
+    "m . . .";
+}
+
+.menu {
+  grid-area: m;
+
+  background-color: grey;
+}
+
+.r {
+  grid-area: r;
+}
+
+.p {
+  grid-area: p;
+}
+
+.s {
+  grid-area: s;
+}
+
+#ps {
+  grid-area: ps;
+}
+
+#cs {
+  grid-area: cs;
+}

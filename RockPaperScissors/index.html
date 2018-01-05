@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="menu">MENU</div>
+
+        <button class="r" id="rock" type="button">Rock</button>
+        <button class="p" id="paper" type="button">Paper</button>
+        <button class="s" id="scissors" type="button">Scissors</button>
+        </br>
+        <p id="ps">player</p>
+        <p id="cs">computer</p>
+
+    </div>
+
+    <script>
+        const pScore = document.querySelector('#ps');
+        const cScore = document.querySelector('#cs');
+
+        let playerPts = 0;
+        let compPts = 0;
+        //computer randomly chooses R P or S
+        function computerPlay() {
+            let rand = Math.random();
+            if (rand <= 0.33) {
+                return "rock";
+            } else if (rand <= 0.66) {
+                return "paper";
+            } else {
+                return "scissors";
+            }
+        }
+
+        //Logic for player vs computer outcome
+        function rpsRound(playerSelection, computerSelection) {
+            if (playerPts < 5 && compPts < 5) {
+                if (playerSelection == "rock") {
+                    if (computerSelection == "paper") {
+                        compPts++;
+                        cScore.textContent = compPts;
+                        return "Robot wins. rock < paper";
+
+                    }
+                    if (computerSelection == "scissors") {
+                        playerPts++;
+                        document.getElementById("ps").innerHTML = playerPts;
+                        return "Human wins. rock > scissors";
+                    }
+                    else {
+                        return "Draw!"
+                    }
+                }
+                if (playerSelection == "paper") {
+                    if (computerSelection == "scissors") {
+                        compPts++;
+                        cScore.textContent = compPts;
+                        return "Robot wins. paper < scissors"
+                    }
+                    if (computerSelection == "rock") {
+                        playerPts++;
+                        document.getElementById("ps").innerHTML = playerPts;
+                        return "Human wins. paper > rock"
+                    }
+                    else {
+                        return "Draw!"
+                    }
+                }
+                if (playerSelection == "scissors") {
+                    if (computerSelection == "rock") {
+                        compPts++;
+                        cScore.textContent = compPts;
+                        return "Robot wins. scissors < rock"
+                    }
+                    if (computerSelection == "paper") {
+                        playerPts++;
+                        document.getElementById("ps").innerHTML = playerPts;
+                        return "Human wins. scissors > paper"
+                    }
+                    else {
+                        return "Draw!"
+                    }
+                }
+
+            } else {
+                console.log("game over");
+            }
+
+        }
+        //three buttons for player selected rock paper or scissors
+        document.getElementById("rock").addEventListener("click", function () {
+            console.log(rpsRound("rock", computerPlay()));
+        });
+        document.getElementById("paper").addEventListener("click", function () {
+            console.log(rpsRound("paper", computerPlay()));
+        });
+        document.getElementById("scissors").addEventListener("click", function () {
+            console.log(rpsRound("scissors", computerPlay()));
+        });
+    </script>
+</body>
+
+</html>
